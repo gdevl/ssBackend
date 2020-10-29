@@ -1,8 +1,8 @@
 const { Song } = require("./models");
 const { User } = require("./models");
 
-async function create(newSong, User) {
-  newSong.creatorId = User.id;
+async function create(newSong, creatorId) {
+  newSong.creatorId = creatorId;
   const song = await Song.create(newSong);
   return song.id;
 }
@@ -10,6 +10,12 @@ async function create(newSong, User) {
 async function list() {
   return await Song.findAll({
     attributes: ["id", "title", "genre", "creatorId", "songUrl"],
+    include: [
+      {
+        model: User,
+        as: "artist",
+      },
+    ],
   });
 }
 

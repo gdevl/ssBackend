@@ -1,10 +1,11 @@
 const { Song } = require("./models");
 const { User } = require("./models");
 
-async function create(newSong, creatorId) {
-  newSong.creatorId = creatorId;
+async function create(newSong) {
   const song = await Song.create(newSong);
-  return song.id;
+  const artist = await User.findByPk(newSong.creatorId);
+  console.log("artist: ", artist);
+  return song;
 }
 
 async function list() {

@@ -47,7 +47,6 @@ router.post(
   fileFilter,
   title,
   genre,
-  songUrl,
   asyncHandler(async function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -70,10 +69,11 @@ router.post(
 
     const uploadedFile = await uploadObject;
     req.body.songUrl = uploadedFile.Location; // assigns the file url to the request object for later use
+    console.log("req.body.creatorId: ", req.body.creatorId);
 
     const newSong = await SongRepository.create(req.body);
     await newSong.save();
-    res.json({ newSong: newSong.toSafeObject() });
+    res.json({ newSong: newSong });
   })
 );
 

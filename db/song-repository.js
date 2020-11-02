@@ -2,10 +2,16 @@ const { Song } = require("./models");
 const { User } = require("./models");
 
 async function create(newSong) {
-  const song = await Song.create(newSong);
   const artist = await User.findByPk(newSong.creatorId);
+  const song = await Song.create(newSong);
   console.log("artist: ", artist);
   return song;
+}
+
+async function destroy(songId) {
+  const song = await Song.findByPk(songId);
+  console.log("song: ", song);
+  return await song.destroy();
 }
 
 async function list() {
@@ -41,4 +47,5 @@ module.exports = {
   create,
   list,
   one,
+  destroy,
 };

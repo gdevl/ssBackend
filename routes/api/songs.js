@@ -69,7 +69,6 @@ router.post(
 
     const uploadedFile = await uploadObject;
     req.body.songUrl = uploadedFile.Location; // assigns the file url to the request object for later use
-    console.log("req.body.creatorId: ", req.body.creatorId);
 
     const newSong = await SongRepository.create(req.body);
     await newSong.save();
@@ -89,5 +88,13 @@ router.get("/:id", async function (req, res, next) {
   const song = await SongRepository.one(req.params.id);
   res.json(song);
 });
+
+router.delete(
+  "/",
+  asyncHandler(async function (req, res, next) {
+    await SongRepository.destroy(req.params.id);
+    res.redirect("/");
+  })
+);
 
 module.exports = router;

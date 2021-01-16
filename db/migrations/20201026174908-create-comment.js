@@ -18,8 +18,8 @@ module.exports = {
         defaultValue: false,
       },
       timeStamp: {
-        allowNull: false,
-        type: Sequelize.STRING(50),
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,

@@ -8,17 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      songId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      userId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       commentText: {
         allowNull: false,
         type: Sequelize.STRING(200),
+      },
+      public: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       timeStamp: {
         allowNull: false,

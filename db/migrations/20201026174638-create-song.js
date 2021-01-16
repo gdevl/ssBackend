@@ -19,12 +19,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.ENUM(genres),
       },
-      creatorId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       songUrl: {
         type: Sequelize.STRING(200),
+      },
+      public: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

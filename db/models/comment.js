@@ -1,6 +1,7 @@
 "use strict";
 
 const user = require("./user");
+const moment = require("moment");
 
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define(
@@ -24,6 +25,22 @@ module.exports = (sequelize, DataTypes) => {
       timeStamp: {
         allowNull: false,
         type: DataTypes.STRING(50),
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        get() {
+          return moment(this.getDataValue("createdAt")).format(
+            "DD/MM/YYYY h:mm:ss"
+          );
+        },
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        get() {
+          return moment(this.getDataValue("updatedAt")).format(
+            "DD/MM/YYYY h:mm:ss"
+          );
+        },
       },
     },
     {}

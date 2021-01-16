@@ -10,6 +10,7 @@ const routes = require("./routes");
 const app = express();
 
 const whitelist = [
+  "http://localhost",
   "http://localhost:3000",
   "https://main.dvueahfjzxsxk.amplifyapp.com",
 ];
